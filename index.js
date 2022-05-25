@@ -19,13 +19,6 @@ async function run(){
 await client.connect();
 const serviceCollection = client.db("carBiz").collection("service");
 
-app.get("/service", async(req, res)=>{
-const query={}
-const cursor=serviceCollection.find(query);
-const services=await cursor.toArray()
-res.send(services)
-})
-
 //..........................Create(C):(POST)...........................//
 
 // Create (POST)
@@ -35,6 +28,20 @@ app.post("/service",async(req, res) => {
     res.json(result);
 
 })
+
+// ........................Read(R):(GET).................................//
+// Read (GET)
+app.get("/service", async(req, res)=>{
+    const query={}
+    const cursor=serviceCollection.find(query);
+    const services=await cursor.toArray()
+    res.send(services)
+    })
+
+
+
+
+
 
     }
     finally{
